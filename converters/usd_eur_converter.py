@@ -38,14 +38,8 @@ class UsdEurConverter(CurrencyConverter):
                 self.logger.error(f"Error processing JSON response: {e}")
                 return None
 
-    def convert_usd_to_eur(self, amount):
+    def convert_usd_to(self, amount, type_currency):
+        if type_currency != 'EUR':
+            print('This is not USD to EUR converter')
+            return
         return amount * self.rates['EUR']
-
-    def convert_usd_to_gbp(self, amount):
-        print('This is not USD to GBP converter')
-
-    def convert_usd_to_rub(self, amount):
-        print('This is not USD to RUB converter')
-
-    def convert_usd_to_cny(self, amount):
-        print('This is not USD to CNY converter')

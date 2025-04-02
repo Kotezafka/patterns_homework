@@ -48,14 +48,8 @@ class UsdCnyConverter(CurrencyConverter):
             print(f"Error processing JSON response: {e}")
             return None
     
-    def convert_usd_to_eur(self, amount):
-        print('This is not USD to EUR converter')
-
-    def convert_usd_to_gbp(self, amount):
-        print('This is not USD to GBP converter')
-
-    def convert_usd_to_rub(self, amount):
-        print('This is not USD to RUB converter')
-
-    def convert_usd_to_cny(self, amount):
+    def convert_usd_to(self, amount, type_currency):
+        if type_currency != 'CNY':
+            print('This is not USD to CNY converter')
+            return
         return amount * self.rates['CNY']
