@@ -1,6 +1,12 @@
 from abc import ABC, abstractmethod
 
+
 class CurrencyConverter(ABC):
+    @property
     @abstractmethod
-    def convert_usd_to(self, amount, type_currency):
+    def target_currency(self) -> str:
+        pass
+
+    @abstractmethod
+    def convert(self, amount: int) -> float:
         pass

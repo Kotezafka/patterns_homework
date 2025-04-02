@@ -1,6 +1,5 @@
 .idea
 .git
-__pycache__
 **/__pycache__
 .env
 .venv
@@ -8,3 +7,4 @@ env/
 venv/
 ENV/
 ./volumes
+**/.ruff_cache

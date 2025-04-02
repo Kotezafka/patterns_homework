@@ -1,21 +1,35 @@
-import asyncio
-from converters import *
+from converters.exchange_service import ExchangeRateService
+from converters.converters.usd_eur_converter import UsdEurConverter
+from converters.converters.usd_gbp_converter import UsdGbpConverter
+from converters.converters.usd_rub_converter import UsdRubConverter
+from converters.converters.usd_cny_converter import UsdCnyConverter
 
 
 def main():
-    amount = int(input('Введите значение в USD: \n'))
-    
+    exchange_service = ExchangeRateService()
+
     converters = {
-        'EUR': UsdEurConverter(),
-        'GBP': UsdGbpConverter(),
-        'RUB': UsdRubConverter(),
-        'CNY': UsdCnyConverter(),
+        "EUR": UsdEurConverter(exchange_service),
+        "GBP": UsdGbpConverter(exchange_service),
+        "RUB": UsdRubConverter(exchange_service),
+        "CNY": UsdCnyConverter(exchange_service),
     }
 
-    for type_currency, conv in converters.items():
-        print(f"{amount} USD to {type_currency}: {conv.convert_usd_to(amount, type_currency)}")
-    
+    try:
+        amount = int(input("Введите значение в USD: "))
+
+        if amount < 0:
+            print("Ошибка: введите целое положительное число")
+            return
+
+        for currency, converter in converters.items():
+            result = converter.convert(amount)
+            print(f"{amount} USD to {currency}: {result}")
+    except ValueError:
+        print("Ошибка: введите целое число")
+    except Exception as e:
+        print(f"Ошибка конвертации: {e}")
+
 
 if __name__ == "__main__":
     main()
-
